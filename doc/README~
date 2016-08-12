@@ -1,0 +1,42 @@
+Programmatic usage: 
+
+
+          EntityComparison ec = new EntityComparison();
+           ec.compare(name1, name2);
+           ec.getScore();  //0 if there is no possibility of them referring to the same entity.
+                           //1 otherwise.
+           ec.getConfidence(); //A confidence level between 0 and 1.
+                           //Confidence level is always zero if ec.getScore() is zero.
+           ec.getReason(); //Not important, can be ignored.
+  
+         As a command line system.
+           Run EntityComparison's main (the default main of this package).
+           Keep entering strings in the format name1----name2.
+  
+ Argument Format: name1 and name2 must be of the following two forms.
+           Type#Name
+           Name
+          Type can be PER, LOC, ORG, DEG, MISC. Any other type will be treated as MISC.
+ 
+ so for example: 
+          String name1 = "PER#Clint Eastwood";
+          String name2 = "PER#Clint";
+          
+          or
+          
+          String name1 = "Eastwood";
+          String name2 = "Mr. Eastwood";
+          
+          or 
+          
+          String name1 = "PER#Clint Eastwood";
+          String name2 = "Mr. Eastwood";
+          
+          or
+          
+          String name1 = "ORG#Mitsubishi Inc.";
+          String name2 = "ORG#Mitsubishi";
+          
+          etc. etc.
+  
+  Use Tester.java if you want to get output of a list of string pairs stored in a file.

@@ -1,0 +1,64 @@
+Programmatic usage: 
+
+
+          EntityComparison ec = new EntityComparison();
+           ec.compare(name1, name2);
+           ec.getScore();  //0 if there is no possibility of them referring to the same entity.
+                           //1 otherwise.
+           ec.getConfidence(); //A confidence level between 0 and 1.
+                           //Confidence level is always zero if ec.getScore() is zero.
+           ec.getReason(); //Not important, can be ignored.
+  
+         As a command line system.
+           Run EntityComparison's main (the default main of this package).
+           Keep entering strings in the format name1----name2.
+  
+ Argument Format: name1 and name2 must be of the following two forms.
+           Type#Name
+           Name
+          Type can be PER, LOC, ORG, DEG, MISC. Any other type will be treated as MISC.
+ 
+ so for example: 
+          String name1 = "PER#Clint Eastwood";
+          String name2 = "PER#Clint";
+          
+          or
+          
+          String name1 = "Eastwood";
+          String name2 = "Mr. Eastwood";
+          
+          or 
+          
+          String name1 = "PER#Clint Eastwood";
+          String name2 = "Mr. Eastwood";
+          
+          or
+          
+          String name1 = "ORG#Mitsubishi Inc.";
+          String name2 = "ORG#Mitsubishi";
+          
+          etc. etc.
+  
+  Use Tester.java if you want to get output of a list of string pairs stored in a file.
+
+
+
+The below steps provide the means to re-produce results:
+
+First, pull the contents of NESim fron gitlab:
+git clone <REPOSITORY NAME>
+
+For Windows (using an IDE such as Eclipse):
+1. Convert to Maven project (optional: add JUnit v4.0 to build path)
+2. Run Tester.java in edu.illinois.cs.cogcomp.entitySimilarity.compare
+3. Results displayed will be the obtained results used to create statistics
+4. LevensteinTester.java is used to obtain statistics for a Levenstein-only scoring approach
+5. For results in previous two versions, copy Tester.java into the appropriate package and add NESimData.txt to list of files
+6. Repeat steps 1-3 for previous two versions.
+
+For Linux (using command line), run the following commands:
+1. mvn package
+2. mvn compile
+3. mvn exec:java -D exec.mainClass=edu.illinois.cs.cogcomp.entitySimilarity.compare.Tester
+4. Repeat steps 1-3 for previous two versions
+
